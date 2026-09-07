@@ -6,9 +6,11 @@ import path from 'node:path';
 const cfg = JSON.parse(await readFile('site.config.json', 'utf8'));
 const games = JSON.parse(await readFile('data/games.json', 'utf8'));
 const OUT = 'dist';
+// GitHub Pages serves this project under /schoolgames/, so every internal link
+// carries that prefix. Taken from `domain`, so a bare domain needs no changes.
+const BASE = new URL(cfg.domain).pathname.replace(/\/+$/, '');
+const link = (u) => (String(u).startsWith('/') ? BASE + u : u);
 const YEAR = new Date().getFullYear();
-const PER_PAGE = 120; // keeps every generated page under ~200 KB
-const HOME_COUNT = 120;
 
 const esc = (s) =>
   String(s ?? '')
@@ -17,17 +19,12 @@ const esc = (s) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
-const catSlug = (c) => c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-
 // Search engines truncate around 155 chars; write to that, don't pad.
 function clamp(text, max) {
   const t = String(text ?? '').replace(/\s+/g, ' ').trim();
   if (t.length <= max) return t;
   return t.slice(0, t.lastIndexOf(' ', max - 1)).trim() + '...';
 }
-
-const categories = [...new Set(games.map((g) => g.category))].sort();
-const byCategory = new Map(categories.map((c) => [c, games.filter((g) => g.category === c)]));
 
 function layout({ title, description, canonical, body, jsonld, image, prev, next }) {
   return `<!doctype html>
@@ -51,14 +48,13 @@ ${image ? `<meta property="og:image" content="${esc(image)}">` : ''}
 <link rel="preconnect" href="https://games.assets.gamepix.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="${BASE}/assets/style.css">
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
 </head>
 <body>
 <header class="site-header"><div class="wrap">
-  <a class="logo" href="/">${esc(cfg.siteName)}<span>.</span></a>
+  <a class="logo" href="${BASE}/">${esc(cfg.siteName)}<span>.</span></a>
   <input class="search" id="q" type="search" placeholder="Search ${games.length} games" autocomplete="off" aria-label="Search games">
-  <nav class="nav">${categories.map((c) => `<a href="/c/${catSlug(c)}/">${esc(c)}</a>`).join('')}</nav>
 </div></header>
 <main>
   <div class="wrap"><div id="results" class="results" hidden></div></div>
@@ -67,32 +63,22 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script
 <footer class="site-footer"><div class="wrap">
   <span>&copy; ${YEAR} ${esc(cfg.siteName)}</span>
   <span>Games provided by GamePix and GameMonetize</span>
-  <span class="spacer"><a href="/">Home</a></span>
+  <span class="spacer"><a href="${BASE}/">All games</a></span>
 </div></footer>
-<script src="/assets/app.js" defer></script>
+<script src="${BASE}/assets/app.js" defer></script>
 </body>
 </html>`;
 }
 
 function card(g) {
-  return `<a class="card" href="/g/${g.slug}/">
-  <img class="shot" src="${esc(g.thumb)}" alt="${esc(g.title)}" width="250" height="250" loading="lazy" decoding="async">
-  <div class="meta"><div class="name">${esc(g.title)}</div><div class="cat">${esc(g.category)}</div></div>
+  return `<a class="card" href="${BASE}/g/${g.slug}/">
+  <img class="shot" src="${esc(link(g.thumb))}" alt="${esc(g.title)}" width="250" height="250" loading="lazy" decoding="async">
+  <div class="meta"><div class="name">${esc(g.title)}</div></div>
 </a>`;
 }
 
 const grid = (list) =>
   list.length ? `<div class="grid">${list.map(card).join('')}</div>` : `<p class="empty">No games here yet.</p>`;
-
-function pager(base, current, total) {
-  if (total < 2) return '';
-  const href = (n) => (n === 1 ? base : `${base}page/${n}/`);
-  const bits = [];
-  if (current > 1) bits.push(`<a class="pg" href="${href(current - 1)}" rel="prev">Previous</a>`);
-  bits.push(`<span class="pg-at">Page ${current} of ${total}</span>`);
-  if (current < total) bits.push(`<a class="pg" href="${href(current + 1)}" rel="next">Next</a>`);
-  return `<nav class="pager">${bits.join('')}</nav>`;
-}
 
 async function page(dir, html) {
   const full = path.join(OUT, dir);
@@ -121,16 +107,7 @@ try {
 const urls = [];
 const track = (u) => urls.push(`${cfg.domain}${u}`);
 
-// Home - a slice, not the whole catalogue, plus a way into every category.
-const tiles = categories
-  .map(
-    (c) =>
-      `<a class="tile" href="/c/${catSlug(c)}/"><span class="tile-name">${esc(c)}</span><span class="tile-count">${
-        byCategory.get(c).length
-      }</span></a>`
-  )
-  .join('');
-
+// Home - the whole catalogue on one page. No categories, no pagination.
 await page(
   '.',
   layout({
@@ -142,58 +119,16 @@ await page(
     <h1>${esc(cfg.tagline)}</h1>
     <p>${esc(cfg.description)}</p>
   </section>
-  <div class="tiles">${tiles}</div>
-  <div class="section-head"><h2>Most played</h2><span class="count">${games.length} games</span></div>
-  ${grid(games.slice(0, HOME_COUNT))}
+  <div class="section-head"><h2>All games</h2><span class="count">${games.length} games</span></div>
+  ${grid(games)}
 </div>`
   })
 );
 track('/');
 
-// Category pages, paginated
-for (const c of categories) {
-  const list = byCategory.get(c);
-  const pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
-  const base = `/c/${catSlug(c)}/`;
-
-  for (let p = 1; p <= pages; p++) {
-    const slice = list.slice((p - 1) * PER_PAGE, p * PER_PAGE);
-    const dir = p === 1 ? `c/${catSlug(c)}` : `c/${catSlug(c)}/page/${p}`;
-    const url = p === 1 ? base : `${base}page/${p}/`;
-
-    await page(
-      dir,
-      layout({
-        title:
-          p === 1
-            ? `${c} games - play free in your browser | ${cfg.siteName}`
-            : `${c} games - page ${p} | ${cfg.siteName}`,
-        description: clamp(
-          `Play ${list.length} free ${c.toLowerCase()} games in your browser. No download, no signup - they load instantly.`,
-          155
-        ),
-        canonical: `${cfg.domain}${url}`,
-        prev: p > 1 ? `${cfg.domain}${p === 2 ? base : `${base}page/${p - 1}/`}` : null,
-        next: p < pages ? `${cfg.domain}${base}page/${p + 1}/` : null,
-        body: `<div class="wrap">
-  <section class="hero"><h1>${esc(c)} games</h1><p>${list.length} free ${esc(
-          c.toLowerCase()
-        )} games that run in the browser. Nothing to install.</p></section>
-  ${grid(slice)}
-  ${pager(base, p, pages)}
-</div>`
-      })
-    );
-    track(url);
-  }
-}
-
 // Game pages
 for (const g of games) {
-  const related = byCategory
-    .get(g.category)
-    .filter((r) => r.slug !== g.slug)
-    .slice(0, 12);
+  const related = games.filter((r) => r.slug !== g.slug).slice(0, 12);
   const url = `/g/${g.slug}/`;
   const portrait = g.orientation === 'portrait';
   const blurb = g.description || `Play ${g.title} free in your browser.`;
@@ -204,13 +139,13 @@ for (const g of games) {
       title: `${g.title} - play free, no download | ${cfg.siteName}`,
       description: clamp(`Play ${g.title} free in your browser. ${blurb}`, 155),
       canonical: `${cfg.domain}${url}`,
-      image: g.thumb,
+      image: link(g.thumb),
       jsonld: {
         '@context': 'https://schema.org',
         '@type': 'VideoGame',
         name: g.title,
         url: `${cfg.domain}${url}`,
-        image: g.thumb,
+        image: link(g.thumb),
         description: clamp(blurb, 300),
         genre: g.categories,
         playMode: 'SinglePlayer',
@@ -220,21 +155,18 @@ for (const g of games) {
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
       },
       body: `<div class="wrap">
-  <nav class="crumbs"><a href="/">Home</a> / <a href="/c/${catSlug(g.category)}/">${esc(g.category)}</a> / ${esc(
-        g.title
-      )}</nav>
+  <nav class="crumbs"><a href="${BASE}/">All games</a> / ${esc(g.title)}</nav>
 
-  <div class="stage${portrait ? ' portrait' : ''}" id="stage" data-src="${esc(g.url)}" data-title="${esc(g.title)}">
+  <div class="stage${portrait ? ' portrait' : ''}" id="stage" data-src="${esc(link(g.url))}" data-title="${esc(g.title)}">
     <button class="poster" id="poster" type="button">
-      <img class="bg" src="${esc(g.thumb)}" alt="" aria-hidden="true">
-      <img class="icon" src="${esc(g.thumb)}" alt="${esc(g.title)}" width="104" height="104">
+      <img class="bg" src="${esc(link(g.thumb))}" alt="" aria-hidden="true">
+      <img class="icon" src="${esc(link(g.thumb))}" alt="${esc(g.title)}" width="104" height="104">
       <span class="play">&#9654; Play ${esc(g.title)}</span>
     </button>
   </div>
 
   <div class="game-bar">
     <h1>${esc(g.title)}</h1>
-    <span class="tag">${esc(g.category)}</span>
     <button class="btn-ghost" id="fs" type="button">Fullscreen</button>
   </div>
 
@@ -263,7 +195,7 @@ for (const g of games) {
     }
   </section>
 
-  ${related.length ? `<div class="section-head"><h2>More ${esc(g.category.toLowerCase())} games</h2></div>${grid(related)}` : ''}
+  ${related.length ? `<div class="section-head"><h2>More games</h2></div>${grid(related)}` : ''}
 </div>`
     })
   );
@@ -273,7 +205,7 @@ for (const g of games) {
 // Search index - fetched on the first keystroke, never on page load.
 await writeFile(
   path.join(OUT, 'search.json'),
-  JSON.stringify(games.map((g) => [g.slug, g.title, g.category]))
+  JSON.stringify(games.map((g) => [g.slug, g.title]))
 );
 
 const app = `document.addEventListener('DOMContentLoaded', function () {
@@ -310,7 +242,7 @@ const app = `document.addEventListener('DOMContentLoaded', function () {
 
     var html = '<div class="section-head"><h2>Search</h2><span class="count">' + hits.length + (hits.length === 200 ? '+' : '') + '</span></div><ul class="hits">';
     for (var j = 0; j < hits.length; j++) {
-      html += '<li><a href="/g/' + hits[j][0] + '/"><span class="hit-name"></span><span class="hit-cat">' + hits[j][2] + '</span></a></li>';
+      html += '<li><a href="${BASE}/g/' + hits[j][0] + '/"><span class="hit-name"></span></a></li>';
     }
     results.innerHTML = html + '</ul>';
     // Titles go in as text, never as markup.
@@ -321,7 +253,7 @@ const app = `document.addEventListener('DOMContentLoaded', function () {
   function load() {
     if (index || loading) return;
     loading = true;
-    fetch('/search.json')
+    fetch('${BASE}/search.json')
       .then(function (r) { return r.json(); })
       .then(function (data) { index = data; render(q.value.trim()); })
       .catch(function () { results.innerHTML = '<p class="empty">Search is unavailable.</p>'; });
@@ -360,6 +292,18 @@ const app = `document.addEventListener('DOMContentLoaded', function () {
 `;
 await writeFile(path.join(OUT, 'assets/app.js'), app);
 
+// GitHub Pages: keep _-prefixed paths, and serve a 404 for unknown URLs.
+await writeFile(path.join(OUT, '.nojekyll'), '');
+await writeFile(
+  path.join(OUT, '404.html'),
+  layout({
+    title: `Page not found | ${cfg.siteName}`,
+    description: 'That page does not exist.',
+    canonical: `${cfg.domain}/404.html`,
+    body: `<div class="wrap"><section class="hero"><h1>Page not found</h1><p>That page does not exist. <a href="${BASE}/">Back to all games</a>.</p></section></div>`
+  })
+);
+
 await writeFile(
   path.join(OUT, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
@@ -371,4 +315,4 @@ ${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}
 await writeFile(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${cfg.domain}/sitemap.xml\n`);
 
 console.log(`built ${urls.length} pages -> ${OUT}/`);
-console.log(`  ${games.length} games, ${categories.length} categories`);
+console.log(`  ${games.length} games on one page`);

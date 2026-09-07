@@ -4,6 +4,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const ROOT = 'dist';
+// The site is served from a sub-path in production, so strip it locally too.
+const cfg = JSON.parse(await readFile('site.config.json', 'utf8'));
+const BASE = new URL(cfg.domain).pathname.replace(/\/+$/, '');
 const PORT = process.env.PORT ? Number(process.env.PORT) : 4321;
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -20,6 +23,7 @@ const TYPES = {
 
 createServer(async (req, res) => {
   let rel = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+  if (BASE && rel.startsWith(BASE)) rel = rel.slice(BASE.length) || '/';
   if (rel.endsWith('/')) rel += 'index.html';
 
   // Keep requests inside dist/.

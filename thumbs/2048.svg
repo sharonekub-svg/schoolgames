@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" role="img" aria-label="2048">
+  <rect width="250" height="250" fill="#bbada0"/>
+  <g>
+    <rect x="18" y="18" width="49" height="49" rx="6" fill="#cdc1b4"/>
+    <rect x="79" y="18" width="49" height="49" rx="6" fill="#eee4da"/>
+    <rect x="140" y="18" width="49" height="49" rx="6" fill="#cdc1b4"/>
+    <rect x="201" y="18" width="31" height="49" rx="6" fill="#ede0c8"/>
+
+    <rect x="18" y="79" width="49" height="49" rx="6" fill="#eee4da"/>
+    <rect x="79" y="79" width="49" height="49" rx="6" fill="#f2b179"/>
+    <rect x="140" y="79" width="49" height="49" rx="6" fill="#cdc1b4"/>
+    <rect x="201" y="79" width="31" height="49" rx="6" fill="#cdc1b4"/>
+
+    <rect x="18" y="140" width="49" height="49" rx="6" fill="#cdc1b4"/>
+    <rect x="79" y="140" width="49" height="49" rx="6" fill="#f59563"/>
+    <rect x="140" y="140" width="49" height="49" rx="6" fill="#edcf72"/>
+    <rect x="201" y="140" width="31" height="49" rx="6" fill="#cdc1b4"/>
+
+    <rect x="18" y="201" width="49" height="31" rx="6" fill="#ede0c8"/>
+    <rect x="79" y="201" width="49" height="31" rx="6" fill="#cdc1b4"/>
+    <rect x="140" y="201" width="49" height="31" rx="6" fill="#cdc1b4"/>
+    <rect x="201" y="201" width="31" height="31" rx="6" fill="#cdc1b4"/>
+  </g>
+  <g font-family="Helvetica, Arial, sans-serif" font-weight="700" text-anchor="middle">
+    <text x="103" y="112" font-size="24" fill="#f9f6f2">4</text>
+    <text x="103" y="173" font-size="22" fill="#f9f6f2">16</text>
+    <text x="164" y="173" font-size="19" fill="#f9f6f2">64</text>
+    <text x="103" y="51" font-size="24" fill="#776e65">2</text>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" width="250" height="250" role="img" aria-label="SkiFree">
+  <rect width="250" height="250" fill="#f2f5f8"/>
+  <g fill="#2f7d4f">
+    <path d="M58 96 L74 62 L90 96 Z"/><path d="M62 118 L74 88 L86 118 Z"/><rect x="71" y="116" width="6" height="14" fill="#6b4a2f"/>
+    <path d="M176 168 L192 134 L208 168 Z"/><path d="M180 190 L192 160 L204 190 Z"/><rect x="189" y="188" width="6" height="14" fill="#6b4a2f"/>
+    <path d="M28 208 L40 182 L52 208 Z"/><rect x="37" y="206" width="6" height="11" fill="#6b4a2f"/>
+  </g>
+  <g stroke="#c9d6e2" stroke-width="3" stroke-linecap="round" fill="none" opacity=".9">
+    <path d="M132 40 C120 76 138 96 126 132"/><path d="M146 40 C134 76 152 96 140 132"/>
+  </g>
+  <g transform="translate(133 150)">
+    <rect x="-13" y="26" width="12" height="4" rx="2" fill="#1c2733"/>
+    <rect x="3" y="26" width="12" height="4" rx="2" fill="#1c2733"/>
+    <rect x="-7" y="4" width="14" height="22" rx="4" fill="#d8443c"/>
+    <circle cx="0" cy="-3" r="8" fill="#f0c9a6"/>
+    <path d="M-9 -6 A9 9 0 0 1 9 -6 Z" fill="#1c2733"/>
+    <rect x="-20" y="8" width="9" height="4" rx="2" fill="#f0c9a6"/>
+    <rect x="11" y="8" width="9" height="4" rx="2" fill="#f0c9a6"/>
+  </g>
+</svg>

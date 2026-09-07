@@ -3,10 +3,13 @@
   <url><loc>https://sharonekub-svg.github.io/schoolgames/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/adventure/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/arcade/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/c/arcade/page/2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/board/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/classics/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/puzzles/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/c/puzzles/page/2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/racing/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/c/shooting/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/sports/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/c/strategy/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/daily-five/</loc></url>
@@ -25,6 +28,7 @@
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/snake/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/beatrix/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/moto-x3m-spooky-land/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/moto-x3m/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/penalty-challenge/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/penalty-challenge-multiplayer/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/12-minibattles-two-players/</loc></url>
@@ -43,140 +47,339 @@
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/battleship-war-multiplayer/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/maze-labyrinth/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/amaze-escape/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/paper-craft-wars/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/body-drop-3d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/piece-of-cake-merge-bake/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mahjong-classic/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/slope-racing-3d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hidden-object-street-of-secrets/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hidden-object-clues-and-mysteries/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/good-sort-master-triple-match/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hidden-objects-island-secrets/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pregnant-mother-simulator/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/nuts-puzzle-sort-by-color/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hazmob-fps-online-shooter/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hedgies/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/kick-lucky-blocks-online/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/dogs-vs-aliens/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/numicolor/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/rivals-fps-online-shooter/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/age-of-heroes/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/aod-art-of-defense/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/soccer-random/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hidden-object-my-hotel/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mahjong-lines/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/word-finder/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/golf-orbit/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/chess-online-playing/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/gym-simulator-online-escape/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/find-the-frog-hidden-objects/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/master-chess/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/fruit-merge-juicy-drop-game/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/build-an-aquapark/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/deadly-descent/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/basketball-stars/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bubble-shooter-tap-pop/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/drunken-boxing-2/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hidden-objects-island/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/snake-2048/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/fun-ragdoll-challenge-mini-games-collection/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/jewel-coloring-crystal-sorting/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/asmr-girl-livestream-mukbang/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/obby-1-jump-per-click/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/among-at-easter/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/magikmon/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mahjong-unlimited/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/epic-sword-battle-fight-in-the-ragdoll-arena/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/battle-simluator-counter-stickman/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/fractal-combat-x/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/1-speed-escape-prison/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mr-racer-car-racing/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/arrow-exit-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mahjong-puzzle-tile-match/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/flying-robot-transform-car-games/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/favorite-puzzles/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/yarn-fever-unravel-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/car-smash-simulator-crash-tune/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/word-cross/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/backgammon/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/wild-love/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/driver-club-highway-racing/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/millionaire-life/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/basket-random/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/robby-double-jump-for-brainrots/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bubble-pop-legend/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/color-pixels-coloring-by-numbers/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/block-blast-2048/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/word-search-hidden-words/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/age-of-tanks-warriors-td-war/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sudoku-online/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/solitaire-crime-stories/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/car-destruction-king/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sorter-ragdoll-playground-shooter/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/vangers-hd/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tap-3d-wood-block-away/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/geometry-arrow-2/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/stickman-kombat-2d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/screw-sort-3d/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/alpha-guns/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/foot-chinko/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/chess-online-multiplayer/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/geometry-vibes/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/vega-mix-2-adventure/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/my-castle-merge-story/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/arrow-cube-3d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/drive-quest/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/eat-blobs-simulator/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/football-masters/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/burger-restaurant-simulator-3d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cozy-coloring/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/red-and-blue-stickman-huggy/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/idle-game-dev-simulator/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pixel-on-titan/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mystery-of-the-old-house-hidden-objects/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mine-fight-cut-mob-army/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/red-impostor-vs-crew/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cut-the-rope-2/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/break-stick-completely/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/weapon-upgrade/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bomber-friends/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/screw-match/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/poly-art/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hair-salon/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/obby-mini-games-vs-1000/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/1941-frozen-front/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bubble-blast/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cut-the-rope/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/my-sugar-factory/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cut-the-rope-experiments/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/find-out-hidden-object/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/flip-goal/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/barry-prison-parkour-escape/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/dash-masters/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/arrows-out/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pool-shoot-tournament/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/collect-brainrot-arena/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/emerland-solitaire/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tower-crush/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/word-associations-solitaire/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/swipy-basketball/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mahjong-3/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/superbike-hero/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/animal-clinic-anomaly/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/god-of-light/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mystery-squishy-dumpling-blind-box/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sudoku/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hidden-objects-home-sweet-home/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/rabbit-samurai-2/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bmg-ragdoll-car-race/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/helix-blitz/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/break-a-lucky-egg-brainrots/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/kick-lucky-block-for-brainrot/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/drag-racing-club/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/animal-evolution-simulator/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hexa-master-3d-sort-puzzle/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/babel-tower/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/rise-of-the-dead/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bubble-pop-fairyland/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/supermarket-expert-idle/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/basket-champs/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/wood-blocks-jam/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/funny-shooter-destroy-all-enemies/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/snake-of-bullets-collect-and-shoot/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/skyblock/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/obby-mini-games/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/obby-climb-and-slide/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/stock-car-hero/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/idle-airport-tycoon/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mr-santa-run-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/street-ball-jam/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/merge-fruit-characters/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/castel-war-3d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/imposter-3d-online-horror/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/merge-rockets-obby/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cooking-city/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ultimate-flying-car/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ball-sort-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/my-arcade-center/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/super-candy-jewels/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/skyblock-3d-survival/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bouncy-dunk/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/block-blast-master/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/survive-the-disasters-obby/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/metal-animals/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/catch-a-fish-obby/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/dark-lands/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/foot-chinko-world-cup/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cat-life-simulator-devil-cat/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sniper-for-brainrots/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/blackriver-mystery-hidden-objects/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/domino-battle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bus-parking-out/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/deadswitch-3/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/monster-go/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/the-aesthetic-world-of-obby/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/escape-school-duel/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/masquerades-vs-impostors/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/drunken-duel/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/push-noob/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/special-strike-zombies/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/merge-world/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/escape-the-monster/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/numorapuzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/slide-the-blocks-build-the-pictures/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/go-balloons/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/little-alchemy/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cut-the-rope-magic/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pool-blast-merge-balls/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/breakblock/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/geometrical-dash/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/acox/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/picture-shift/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cozy-idle-village/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/time-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/knight-bolts-merge-edition/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/jelly-color-sort-3d/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/king-rugni-tower-defense/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pocket-tile/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/miki-oath/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/swap-the-pictures/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sky-rush/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/crossy-rails/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/stacky-dash-nail/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/basketball-master/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/boat-merge/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bois-d-arc-bow-shooting/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/vacation-overload/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/kobadoo-flags/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/unscrew-odyssey/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/halloween-horror-massacre/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/rainbow-s-doctor/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/killer-escape-huggy/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/red-impostor-guys/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pop-it/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ricoshield/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mosaicat/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/death-run/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/seven-down/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ragdoll-rescue-physics-puzzle/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/night-city-racing/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/marble-factory/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hunters-and-props/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/popsortica/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cruel-fable/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/smart-looter/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/red-stickman-vs-monster-school/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/kaku-shikaku-logic-puzzle/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/wounded-winter-a-lakota-story/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/rings-and-dot/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/10-blocks/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/solitaire-tile-match/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/angry-gran/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/street-race-master/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tile-pair-jam-mahjong-master/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/russian-car-drift-3d/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/zombie-can-t-jump/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/draw-save-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sticker-art-book-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/special-ops-go/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/master-checkers/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tic-tac-toe-mania/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/grand-prix-hero/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/lucky-brainrot-blocks-online/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/boss-level-pumpkin-madness/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/escape-from-wave-for-brainrots/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/battboy-adventure/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/idle-train-empire-tycoon/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/flamit/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/get-tall-and-fall/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/robo-butcher/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/piano-tiles-game/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/solar-smash/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hero-defense-king/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/build-your-zombie-horde/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/dd-blocky/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/get-fat-for-brainrot/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/fruit-blaster/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/super-chains/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/2-minute-football-qb-legend/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pigeon-bomber/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/kobadoo-shapes/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/badland/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/crime-and-vice-city-police/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/squid-race/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/gym-boss/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/find-the-pets/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/face-breaker/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ski-king-2022/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tiny-tomb/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cozy-jigsaw-puzzles/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mixed-world-weekend/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/zombie-road/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/evo-city-driving/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/heroes-of-the-dungeons-match-3-rpg/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/knife-smash/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/the-tall-man/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cake-shop-cafe-pastries-waffles-cooking-game/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/icy-purple-head-2/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/dragon-hunter/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/rope-bowing-puzzle/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/green-and-blue-cuteman/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/3d-acrylic-nail-nail-art-game/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/your-obby-size/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tiger-run/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/squidgames-3d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/english-checkers-online-multiplayer/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/canjump/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/noob-vs-zombie/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/noob-huggy-kissiy/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/beam-drive-car-crash-test-simulator/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/beach-bowling-3d/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/your-obby-parkour/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/puppets-cemetery/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/checkers-legend/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/the-queen-s-jewels/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/knife-io/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/hockey-hero/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mine-mining-islands-skyblock-village/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/just-golf/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/galaxy-warriors/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/stickman-archero-fight/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tennis-open-2020/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ultimate-strike/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/football-heads/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/neon-maze/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/real-city-driving-2/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/obby-online-with-friends-draw-and-jump/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/red-and-blue-stickman-rope/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/k-pop-demon-hunter-fashion/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/moto-maniac-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/roll-this-ball/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/diamant-match-3-sky-story/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/zombie-space-episode-ii/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/boxing-stars/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/space-tower-defense/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/bus-escape-clear-jam/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/block-puzzle-jewel/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/roar-of-city/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/obby-click-and-grow/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/slalom-hero/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/line-of-defense/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/motorcycle-racer-road-mayhem/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/2d-platformer-coin/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/water-sort-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/catch-a-brainrot-from-bosses/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/d-copter-reloaded/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sniper-attack2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/2048-x2-merge-blocks/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/kuli/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/boss-level-shootout/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mahjong-match/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/warzone-strike/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/steve-adventurecraft-nether/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/lipuzz-water-sort-puzzle/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/roller-coaster-simulator/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/screw-pin-puzzle-levels/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/super-drive/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/soccer-hero/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/battlebox/</loc></url>
@@ -184,20 +387,27 @@
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pudding-monsters/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/fidget-spinner-mania/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/panda-fight/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/survive-lava-for-brainrots/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tiny-chick/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/stickman-huggy-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/idle-zoo/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/speed-pool-king/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/jigsaw-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ragdoll-soccer/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/going-up/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/car-defender/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/go-chicken-go/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/the-eggsecutioner/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/word-string/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/zombie-massacre/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/call-of-ops-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/biozombie-outbreak/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/epic-empire-tower-defense/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ragdoll-racing-extreme-downhill/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/baby-brainrots-multiplayer-with-friends/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/sliding-slide/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/the-lost-joystick/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/find-match-3d/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/robot-bar-find-the-differences/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/ghost-walker/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/king-of-thieves/</loc></url>
@@ -208,58 +418,75 @@
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/get-10/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/drink-drive-survive/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cerkio/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/road-chase-shooter-realistic-guns/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/jigsaw-collections/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/island-puzzle/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/coloring-by-numbers-pixel-room/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/crap-attack/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/donutosaur-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/jurassic-run/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/jewel-legend/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/flow-mania/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/tac-tac-way/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/angry-sharks/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/red-and-green-3/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pop-pop-kitties/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mom-life-simulator-baby-care/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/open-dune-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/dotto-botto/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/princess-nail-art/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/pocket-universe/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/fishing-io/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/duelers/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/drag-me-ow/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/steve-adventurecraft/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/loaf-clicker/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/solitaire-emperor-secrets-of-fate/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/a-mole-in-a-hole/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/the-green-mission-inside-a-cave/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/red-and-green-pumpkin/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/diggy/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/obby-run-star-speed-and-pets/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/octane-racing/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/big-shark/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/collect-the-gift/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/noob-huggy-winter/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/scary-rooms-idle-horror/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cycle-extreme/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/takeover/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/schoolboy-runaway-room-escape/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/extreme-drift-racing/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/chicken-merge-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/furious-speed/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/top-shootout/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/city-blocks/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/speed-per-click-obby/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/don-t-touch-the-red/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/mixed-world/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/rooftop-run/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/final-freeway-2r/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/save-kitten/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/going-right/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/zap/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/shotwildwest/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/demon-killer/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/runaway-toad/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/moto-maniac/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/noob-huggy/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/squad-assembler-merge/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/super-cute-cat/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/moto-fury/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/3d-darts/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/popit-vs-spinner/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/color-sort-puzzle-milk-tea-sorting/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/slimoban-2/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/slalom-ski-simulator/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/morphit/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/burger-game-burger-shop/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/cricket-championship/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/saguaro/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/maze-of-death/</loc></url>
+  <url><loc>https://sharonekub-svg.github.io/schoolgames/g/word-solitaire/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/doll-queen-designer/</loc></url>
   <url><loc>https://sharonekub-svg.github.io/schoolgames/g/amazing-sheriff/</loc></url>
 </urlset>

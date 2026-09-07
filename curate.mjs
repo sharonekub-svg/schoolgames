@@ -1,6 +1,7 @@
 // Merges every broker catalogue into the curated site list (data/games.json).
 // Rules live in site.config.json. Run after catalog.mjs pull / the GameMonetize pull.
 import { readFile, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 
 const cfg = JSON.parse(await readFile('site.config.json', 'utf8'));
 
@@ -136,6 +137,14 @@ function add(n) {
 
 // Games whose licence lets us host the files ourselves, out of src/games/.
 // These load from our own domain: no broker, no third-party ads, fastest of all.
+// A real screenshot beats the drawn placeholder, so use one when it exists.
+function selfThumb(dir) {
+  for (const ext of ['jpg', 'png']) {
+    if (existsSync(`src/thumbs/${dir}.${ext}`)) return `/thumbs/${dir}.${ext}`;
+  }
+  return `/thumbs/${dir}.svg`;
+}
+
 function fromSelfHosted(s) {
   return {
     source: 'selfhosted',
@@ -145,7 +154,7 @@ function fromSelfHosted(s) {
     category: s.category ?? 'Puzzles',
     categories: [s.category ?? 'Puzzles'],
     url: `/games/${s.dir}/`,
-    thumb: `/thumbs/${s.dir}.svg`,
+    thumb: selfThumb(s.dir),
     width: 800,
     height: 600,
     orientation: 'landscape',

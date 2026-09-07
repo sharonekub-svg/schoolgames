@@ -146,6 +146,7 @@ school network filters. This one deliberately does not, and should not gain one.
 | `opensource.mjs` | checks candidate games against the GitHub API for a real licence |
 | `curate.mjs` | merges every source into the final list |
 | `make-thumbs.mjs` | draws thumbnails into `src/thumbs/` |
+| `shoot-thumbs.mjs` | optional: screenshots the self-hosted games for their thumbnails (needs Playwright) |
 | `build.mjs` | generates every page, the search index, sitemap and robots.txt |
 | `serve.mjs` | zero-dependency local static server |
 | `gen-demo.mjs` | single-file shareable preview with thumbnails inlined |

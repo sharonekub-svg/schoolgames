@@ -29,7 +29,7 @@
       "Puzzles"
     ],
     "url": "/games/2048/",
-    "thumb": "/thumbs/2048.svg",
+    "thumb": "/thumbs/2048.png",
     "width": 800,
     "height": 600,
     "orientation": "landscape",
@@ -51,7 +51,7 @@
       "Racing"
     ],
     "url": "/games/hexgl/",
-    "thumb": "/thumbs/hexgl.svg",
+    "thumb": "/thumbs/hexgl.jpg",
     "width": 800,
     "height": 600,
     "orientation": "landscape",
@@ -117,7 +117,7 @@
       "Strategy"
     ],
     "url": "/games/particle-clicker/",
-    "thumb": "/thumbs/particle-clicker.svg",
+    "thumb": "/thumbs/particle-clicker.jpg",
     "width": 800,
     "height": 600,
     "orientation": "landscape",
@@ -161,7 +161,7 @@
       "Arcade"
     ],
     "url": "/games/drakonas/",
-    "thumb": "/thumbs/drakonas.svg",
+    "thumb": "/thumbs/drakonas.jpg",
     "width": 800,
     "height": 600,
     "orientation": "landscape",
@@ -205,7 +205,7 @@
       "Strategy"
     ],
     "url": "/games/towerdefense/",
-    "thumb": "/thumbs/towerdefense.svg",
+    "thumb": "/thumbs/towerdefense.jpg",
     "width": 800,
     "height": 600,
     "orientation": "landscape",
@@ -315,7 +315,7 @@
       "Puzzles"
     ],
     "url": "/games/beatrix/",
-    "thumb": "/thumbs/beatrix.svg",
+    "thumb": "/thumbs/beatrix.png",
     "width": 800,
     "height": 600,
     "orientation": "landscape",

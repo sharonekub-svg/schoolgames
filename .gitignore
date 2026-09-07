@@ -1,0 +1,17 @@
+dist/
+node_modules/
+demo.html
+*.zip
+
+# Vendored games are re-downloadable: `node setup.mjs` restores them.
+# Daily Five is ours, so it stays in the repo.
+src/games/*
+!src/games/dailyfive/
+
+# Broker catalogues are re-downloadable:
+#   node catalog.mjs pull
+#   see gamemonetize.mjs for the GameMonetize feed
+data/catalog.json
+data/gm-catalog.json
+data/gm-raw.json
+data/gm-p*.json

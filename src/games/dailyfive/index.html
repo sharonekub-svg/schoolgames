@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Five</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap">
+<style>
+  :root {
+    --bg: #0b0c0f;
+    --surface: #14161b;
+    --line: #262a33;
+    --text: #e8eaed;
+    --muted: #949aa6;
+    --hit: #7cb342;
+    --near: #d8a12a;
+    --miss: #333944;
+    --display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  header {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .puzzle-no { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .streak { margin-left: auto; color: var(--muted); font-size: 13px; }
+  .streak b { color: var(--text); font-variant-numeric: tabular-nums; }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    padding: 10px;
+  }
+
+  #board { display: grid; grid-template-rows: repeat(6, 1fr); gap: 6px; }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+
+  .tile {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--line);
+    border-radius: 6px;
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: transform .12s, border-color .12s;
+  }
+
+  .tile.filled { border-color: #46505f; }
+  .tile.pop { transform: scale(1.06); }
+  .tile.hit { background: var(--hit); border-color: var(--hit); color: #0b0c0f; }
+  .tile.near { background: var(--near); border-color: var(--near); color: #0b0c0f; }
+  .tile.miss { background: var(--miss); border-color: var(--miss); color: var(--muted); }
+
+  .row.bad { animation: shake .4s; }
+  @keyframes shake {
+    10%, 90% { transform: translateX(-2px); }
+    30%, 70% { transform: translateX(4px); }
+    50% { transform: translateX(-4px); }
+  }
+
+  #keyboard { display: grid; gap: 6px; width: 100%; max-width: 500px; }
+  .krow { display: flex; gap: 5px; justify-content: center; }
+
+  .key {
+    flex: 1;
+    min-width: 0;
+    height: 52px;
+    border: 0;
+    border-radius: 6px;
+    background: #2b323d;
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .key.wide { flex: 1.6; font-size: 12px; }
+  .key:active { filter: brightness(1.3); }
+  .key.hit { background: var(--hit); color: #0b0c0f; }
+  .key.near { background: var(--near); color: #0b0c0f; }
+  .key.miss { background: #1b1f27; color: #5d6674; }
+
+  #toast {
+    position: fixed;
+    top: 74px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text);
+    color: var(--bg);
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s;
+    z-index: 5;
+  }
+  #toast.show { opacity: 1; }
+
+  #done {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    text-align: center;
+  }
+  #done.show { display: flex; }
+  #done .word { font-family: var(--display); font-size: 26px; letter-spacing: .06em; text-transform: uppercase; }
+  #done .sub { color: var(--muted); font-size: 14px; }
+  #next { font-variant-numeric: tabular-nums; }
+
+  #share {
+    padding: 11px 26px;
+    border: 0;
+    border-radius: 999px;
+    background: #b8ff3c;
+    color: #0b0c0f;
+    font: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  @media (max-height: 700px) {
+    .tile { width: 48px; height: 48px; font-size: 23px; }
+    .key { height: 44px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Daily Five</h1>
+  <span class="puzzle-no" id="pno"></span>
+  <span class="streak">Streak <b id="streak">0</b></span>
+</header>
+
+<main>
+  <div id="board"></div>
+  <div id="done">
+    <div class="word" id="answer"></div>
+    <div class="sub" id="verdict"></div>
+    <button id="share" type="button">Share result</button>
+    <div class="sub">Next puzzle in <span id="next">--:--:--</span></div>
+  </div>
+  <div id="keyboard"></div>
+</main>
+
+<div id="toast"></div>
+
+<script src="words.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var ROWS = 6, COLS = 5;
+  var EPOCH = Date.UTC(2026, 0, 1);       // puzzle #1 was 1 Jan 2026
+  var DAY = 86400000;
+  var KEY = 'dailyfive';
+
+  // Everyone gets the same word on the same calendar day.
+  function puzzleNumber() {
+    var now = new Date();
+    var local = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.floor((local - EPOCH) / DAY) + 1;
+  }
+
+  var pno = puzzleNumber();
+  var answer = ANSWERS[((pno - 1) % ANSWERS.length + ANSWERS.length) % ANSWERS.length];
+
+  var board = document.getElementById('board');
+  var keyboard = document.getElementById('keyboard');
+  var toastEl = document.getElementById('toast');
+
+  var guesses = [];      // committed guesses
+  var current = '';      // row being typed
+  var over = false;
+  var keyState = {};     // letter -> hit | near | miss
+
+  // ---- rendering ----
+
+  var rows = [];
+  for (var r = 0; r < ROWS; r++) {
+    var row = document.createElement('div');
+    row.className = 'row';
+    var tiles = [];
+    for (var c = 0; c < COLS; c++) {
+      var t = document.createElement('div');
+      t.className = 'tile';
+      row.appendChild(t);
+      tiles.push(t);
+    }
+    board.appendChild(row);
+    rows.push({ el: row, tiles: tiles });
+  }
+
+  var LAYOUT = ['qwertyuiop', 'asdfghjkl', '↵zxcvbnm⌫'];
+  var keyEls = {};
+  LAYOUT.forEach(function (line) {
+    var kr = document.createElement('div');
+    kr.className = 'krow';
+    line.split('').forEach(function (ch) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'key' + (ch === '↵' || ch === '⌫' ? ' wide' : '');
+      b.textContent = ch === '↵' ? 'Enter' : ch === '⌫' ? 'Del' : ch;
+      b.addEventListener('click', function () {
+        if (ch === '↵') submit();
+        else if (ch === '⌫') back();
+        else type(ch);
+      });
+      kr.appendChild(b);
+      if (ch !== '↵' && ch !== '⌫') keyEls[ch] = b;
+    });
+    keyboard.appendChild(kr);
+  });
+
+  // Correct letters win over present ones; a letter only counts as present
+  // as many times as it actually appears in the answer.
+  function score(guess) {
+    var out = new Array(COLS).fill('miss');
+    var pool = {};
+    var i;
+    for (i = 0; i < COLS; i++) {
+      if (guess[i] === answer[i]) out[i] = 'hit';
+      else pool[answer[i]] = (pool[answer[i]] || 0) + 1;
+    }
+    for (i = 0; i < COLS; i++) {
+      if (out[i] === 'hit') continue;
+      if (pool[guess[i]] > 0) { out[i] = 'near'; pool[guess[i]]--; }
+    }
+    return out;
+  }
+
+  var RANK = { miss: 0, near: 1, hit: 2 };
+
+  function paint() {
+    guesses.forEach(function (g, r) {
+      var marks = score(g);
+      rows[r].tiles.forEach(function (t, c) {
+        t.textContent = g[c];
+        t.className = 'tile ' + marks[c];
+        var k = keyEls[g[c]];
+        if (k && RANK[marks[c]] >= RANK[keyState[g[c]] || 'miss']) {
+          if (!keyState[g[c]] || RANK[marks[c]] > RANK[keyState[g[c]]]) {
+            keyState[g[c]] = marks[c];
+            k.className = 'key ' + marks[c];
+          }
+        }
+      });
+    });
+
+    var r = guesses.length;
+    if (r < ROWS) {
+      rows[r].tiles.forEach(function (t, c) {
+        t.textContent = current[c] || '';
+        t.className = 'tile' + (current[c] ? ' filled' : '');
+      });
+      for (var rest = r + 1; rest < ROWS; rest++) {
+        rows[rest].tiles.forEach(function (t) { t.textContent = ''; t.className = 'tile'; });
+      }
+    }
+  }
+
+  var toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1600);
+  }
+
+  // ---- input ----
+
+  function type(ch) {
+    if (over || current.length >= COLS) return;
+    current += ch;
+    paint();
+    var t = rows[guesses.length].tiles[current.length - 1];
+    t.classList.add('pop');
+    setTimeout(function () { t.classList.remove('pop'); }, 110);
+  }
+
+  function back() {
+    if (over) return;
+    current = current.slice(0, -1);
+    paint();
+  }
+
+  function submit() {
+    if (over) return;
+    if (current.length < COLS) { reject('Not enough letters'); return; }
+    if (!VALID.has(current)) { reject('Not in word list'); return; }
+    guesses.push(current);
+    var won = current === answer;
+    current = '';
+    paint();
+    save();
+    if (won || guesses.length === ROWS) finish(won);
+  }
+
+  function reject(msg) {
+    toast(msg);
+    var row = rows[guesses.length].el;
+    row.classList.add('bad');
+    setTimeout(function () { row.classList.remove('bad'); }, 420);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'Enter') submit();
+    else if (e.key === 'Backspace') back();
+    else if (/^[a-zA-Z]$/.test(e.key)) type(e.key.toLowerCase());
+  });
+
+  // ---- storage ----
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) { return null; }
+  }
+
+  function save() {
+    try {
+      var prev = load() || {};
+      localStorage.setItem(KEY, JSON.stringify({
+        pno: pno,
+        guesses: guesses,
+        over: over,
+        streak: prev.streak || 0,
+        lastWon: prev.lastWon || 0
+      }));
+    } catch (e) { /* private mode - the game still plays, it just won't persist */ }
+  }
+
+  function finish(won) {
+    over = true;
+    var prev = load() || {};
+    var streak = prev.streak || 0;
+    if (won) streak = (prev.lastWon === pno - 1) ? streak + 1 : 1;
+    else streak = 0;
+
+    try {
+      localStorage.setItem(KEY, JSON.stringify({
+        pno: pno, guesses: guesses, over: true,
+        streak: streak, lastWon: won ? pno : (prev.lastWon || 0)
+      }));
+    } catch (e) {}
+
+    document.getElementById('streak').textContent = streak;
+    document.getElementById('answer').textContent = answer;
+    document.getElementById('verdict').textContent = won
+      ? 'Solved in ' + guesses.length + (guesses.length === 1 ? ' guess' : ' guesses')
+      : 'Out of guesses - back tomorrow';
+    document.getElementById('done').classList.add('show');
+    tick();
+  }
+
+  // ---- share: the emoji grid is why this kind of game spreads ----
+
+  var MARK = { hit: '🟩', near: '🟨', miss: '⬛' };
+
+  document.getElementById('share').addEventListener('click', function () {
+    var solved = guesses[guesses.length - 1] === answer;
+    var head = 'Daily Five #' + pno + ' ' + (solved ? guesses.length : 'X') + '/' + ROWS;
+    var grid = guesses.map(function (g) {
+      return score(g).map(function (m) { return MARK[m]; }).join('');
+    }).join('\n');
+    var text = head + '\n\n' + grid;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { toast('Copied'); },
+        function () { toast('Copy failed'); }
+      );
+    } else {
+      toast('Copy failed');
+    }
+  });
+
+  // ---- countdown ----
+
+  function tick() {
+    var now = new Date();
+    var midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    var s = Math.max(0, Math.floor((midnight - now) / 1000));
+    var h = String(Math.floor(s / 3600)).padStart(2, '0');
+    var m = String(Math.floor(s / 60) % 60).padStart(2, '0');
+    var sec = String(s % 60).padStart(2, '0');
+    var el = document.getElementById('next');
+    if (el) el.textContent = h + ':' + m + ':' + sec;
+  }
+  setInterval(tick, 1000);
+
+  // ---- boot ----
+
+  document.getElementById('pno').textContent = '#' + pno;
+
+  var saved = load();
+  if (saved) {
+    document.getElementById('streak').textContent = saved.streak || 0;
+    if (saved.pno === pno && Array.isArray(saved.guesses)) {
+      guesses = saved.guesses;
+      if (saved.over) {
+        paint();
+        finish(guesses[guesses.length - 1] === answer);
+      }
+    }
+  }
+  paint();
+})();
+</script>
+</body>
+</html>

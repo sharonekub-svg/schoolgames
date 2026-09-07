@@ -1,0 +1,115 @@
+// One-shot setup: re-downloads every self-hosted game and applies the fixes
+// each one needs. The games are not committed to this repo - only the original
+// work is (Daily Five, the thumbnails, the scripts).
+//
+//   node setup.mjs
+//
+// Needs `tar` on PATH (built into Windows 10+, macOS and Linux).
+import { mkdir, rm, rename, readdir, access, cp } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { createWriteStream } from 'node:fs';
+import { Readable } from 'node:stream';
+import { pipeline } from 'node:stream/promises';
+import path from 'node:path';
+
+const run = promisify(execFile);
+const GAMES = 'src/games';
+
+// repo, target dir, branch, and the surgery each one needs afterwards.
+const SOURCES = [
+  { repo: 'gabrielecirulli/2048', dir: '2048', branch: 'master', drop: ['CONTRIBUTING.md', 'Rakefile'] },
+  // bkcore.coffee LOOKS like CoffeeScript source but holds .js files loaded at
+  // runtime. Deleting it breaks the game. Only package.zip is safe to remove.
+  { repo: 'BKcore/HexGL', dir: 'hexgl', branch: 'master', drop: ['package.zip'] },
+  { repo: 'wwwtyro/Astray', dir: 'astray', branch: 'master' },
+  { repo: 'basicallydan/skifree.js', dir: 'skifree', branch: 'master' },
+  { repo: 'particle-clicker/particle-clicker', dir: 'particle-clicker', branch: 'master' },
+  { repo: 'dmcinnes/HTML5-Asteroids', dir: 'asteroids', branch: 'master' },
+  { repo: 'Casmo/Drakonas', dir: 'drakonas', branch: 'master', drop: ['editor', '_locales'] },
+  { repo: 'ondras/custom-tetris', dir: 'blockfall', branch: 'master' },
+  { repo: 'Casmo/tower-defense', dir: 'towerdefense', branch: 'master' },
+  { repo: 'Couchfriends/Space-Shooter', dir: 'spaceshooter', branch: 'master', flatten: 'build' },
+  { repo: 'Couchfriends/breakout', dir: 'breakout', branch: 'master', flatten: 'build' },
+  { repo: 'budnix/ball-and-wall', dir: 'ballwall', branch: 'master' },
+  { repo: 'jrgdiz/snake', dir: 'snake', branch: 'master', rename: ['index.htm', 'index.html'] },
+  { repo: 'cxong/Beatrix', dir: 'beatrix', branch: 'master' }
+];
+
+const exists = async (p) => { try { await access(p); return true; } catch { return false; } };
+
+async function fetchRepo(s) {
+  const target = path.join(GAMES, s.dir);
+
+  // Never clobber Daily Five or a thumbnail we drew.
+  if (await exists(path.join(target, 'index.html')) && s.dir !== '2048') {
+    const thumb = path.join(target, 'thumb.svg');
+    if (await exists(thumb)) { console.log(`  have    ${s.dir}`); return; }
+  }
+
+  const tmp = path.join(GAMES, `.tmp-${s.dir}`);
+  const tgz = path.join(GAMES, `.${s.dir}.tar.gz`);
+  await rm(tmp, { recursive: true, force: true });
+  await mkdir(tmp, { recursive: true });
+
+  const url = `https://codeload.github.com/${s.repo}/tar.gz/refs/heads/${s.branch}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${s.repo}: HTTP ${res.status}`);
+  await pipeline(Readable.fromWeb(res.body), createWriteStream(tgz));
+
+  await run('tar', ['xzf', tgz, '-C', tmp]);
+  await rm(tgz, { force: true });
+
+  const inner = (await readdir(tmp))[0];
+  let src = path.join(tmp, inner);
+
+  // Some repos ship the playable build in a subfolder.
+  if (s.flatten) {
+    const built = path.join(src, s.flatten);
+    if (await exists(built)) {
+      for (const lic of ['LICENSE', 'LICENSE.txt', 'license.md']) {
+        if (await exists(path.join(src, lic))) {
+          await cp(path.join(src, lic), path.join(built, lic)).catch(() => {});
+        }
+      }
+      src = built;
+    }
+  }
+
+  // Keep whatever thumb.svg we already drew.
+  const keptThumb = path.join(target, 'thumb.svg');
+  const hadThumb = await exists(keptThumb);
+  let stash = null;
+  if (hadThumb) {
+    stash = path.join(GAMES, `.thumb-${s.dir}.svg`);
+    await cp(keptThumb, stash);
+  }
+
+  await rm(target, { recursive: true, force: true });
+  await rename(src, target);
+  await rm(tmp, { recursive: true, force: true });
+
+  if (stash) { await cp(stash, keptThumb); await rm(stash, { force: true }); }
+
+  for (const d of s.drop ?? []) await rm(path.join(target, d), { recursive: true, force: true });
+  if (s.rename) {
+    const [from, to] = s.rename;
+    if (await exists(path.join(target, from))) {
+      await rename(path.join(target, from), path.join(target, to));
+    }
+  }
+
+  console.log(`  fetched ${s.dir}`);
+}
+
+console.log(`Fetching ${SOURCES.length} open-source games into ${GAMES}/\n`);
+for (const s of SOURCES) {
+  try { await fetchRepo(s); }
+  catch (e) { console.log(`  FAILED  ${s.dir}: ${e.message}`); }
+}
+
+console.log('\nNext:');
+console.log('  node make-thumbs.mjs      # draws any missing thumbnails');
+console.log('  node catalog.mjs pull     # GamePix catalogue -> data/catalog.json');
+console.log('  node curate.mjs           # merge + filter -> data/games.json');
+console.log('  node build.mjs            # -> dist/');

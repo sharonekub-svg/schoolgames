@@ -1,6 +1,7 @@
 # Loadless
 
-Static browser-games site. 150 legally-licensed games via the GamePix publisher feed.
+Static browser-games site. 477 legally-licensed games: 249 via the GamePix publisher
+feed, 213 via Playgama, 15 self-hosted under open-source licences.
 No dependencies, no framework, no database. Builds to plain HTML.
 
 The bet: every competitor in this niche is slow and covered in ad vomit.
@@ -9,13 +10,21 @@ Being the fast clean one is the entire product.
 ## Commands
 
 ```bash
+node setup.mjs              # re-download the 14 self-hosted games (not in git)
 node catalog.mjs pull       # GamePix catalogue   -> data/catalog.json    (6,119)
 node gamemonetize.mjs find  # search the GameMonetize catalogue           (15,000)
-node curate.mjs             # merge + filter both -> data/games.json
+node curate.mjs             # merge + filter all  -> data/games.json
 node build.mjs              # data/games.json     -> dist/
 node serve.mjs              # preview at http://localhost:4321
 node gen-demo.mjs 120       # single-file shareable preview -> demo.html
+
+npm run build               # setup + thumbs + build: what the deploy runs
 ```
+
+`curate.mjs` rebuilds `data/games.json` from the source catalogues, and
+`data/catalog.json` (GamePix) is gitignored — so on a fresh clone it would drop
+249 games. It refuses any run that shrinks the list by more than 10%; pull the
+catalogue first, or pass `--force` if the shrink is deliberate.
 
 Searching the catalogues before pinning a game:
 
@@ -30,8 +39,9 @@ node gamemonetize.mjs find "bloxorz"
 |---|---|
 | `site.config.json` | name, domain, IDs, game count, filters, pinned titles, trademark blocklist |
 | `catalog.mjs` | pulls + searches the GamePix catalogue |
+| `data/playgama.json` | the hand-picked Playgama catalogue (committed) |
 | `gamemonetize.mjs` | searches the GameMonetize catalogue |
-| `curate.mjs` | merges both brokers into the final game list |
+| `curate.mjs` | merges every source into the final list; won't shrink it >10% |
 | `build.mjs` | generates every page, search index, sitemap, robots.txt |
 | `src/style.css` | all styling |
 | `data/games.json` | the curated list (edit by hand to hand-pick) |
@@ -40,8 +50,7 @@ node gamemonetize.mjs find "bloxorz"
 
 ## Output
 
-- `/` — category tiles + the 120 most played
-- `/c/<category>/` and `/c/<category>/page/N/` — paginated, 120 per page
+- `/` — every game on one page
 - `/g/<slug>/` — one page per game, unique title + meta description + `VideoGame` JSON-LD
 - `search.json` — site-wide search index, fetched on the first keystroke only
 - `sitemap.xml`, `robots.txt`
@@ -49,7 +58,7 @@ node gamemonetize.mjs find "bloxorz"
 Every page stays under ~40 KB. CSS + JS is 9 KB. Games load on click, not on page
 load — the page stays fast and a click counts as a real session for ad revenue.
 
-## Why there are 233 games and not 21,000
+## Why there are 477 games and not 21,000
 
 The GamePix catalogue carries a play-ranking score. Its distribution is the whole story:
 
@@ -74,7 +83,10 @@ This is also an SEO decision. Scaled content abuse was Google's top enforcement 
 in the March 2026 core update, and sites publishing thousands of thin templated pages
 took 50–80% traffic drops. Volume itself is fine — undifferentiated volume is not.
 4,000 pages built from the same broker descriptions every rival portal also publishes is
-exactly the wrong shape. 233 pages with real per-game specs is the right one.
+exactly the wrong shape. 477 pages with real per-game specs is the right one.
+
+Playgama has no score in its feed either, so its 213 titles are a hand-picked list
+kept in `data/playgama.json` rather than a filtered dump.
 
 Curation is the product. Every competitor dumps ten thousand junk games. Being the site
 where everything is worth clicking is the only edge available here.
@@ -83,7 +95,8 @@ where everything is worth clicking is the only edge available here.
 
 `blockedTrademarks` in the config drops any GameMonetize title carrying a franchise
 name owned by someone else — `Minecraft Hole IO`, `Mario 3D Shooter`, `FNAF Shooter`
-and so on. GamePix entries skip the check because that catalogue is vetted.
+and so on. GamePix and Playgama entries skip the check: both catalogues are vetted
+and carry the real licensed titles under their real names.
 
 A clone with its own name is legal. A clone wearing the original's name gets a DMCA
 notice sent to **your** domain, not the broker's. Keep the list, and add to it
@@ -108,7 +121,9 @@ whenever you spot a new one.
    account holder.
 2. **Pick a real name and buy the domain.** Update `siteName` and `domain` in the config,
    then rebuild so canonicals and the sitemap point at the real host.
-3. **Deploy** — Cloudflare Pages or Netlify, free tier. Point it at `dist/`.
+3. **Deploy** — import the repo at vercel.com/new. `vercel.json` already carries the
+   build command and output directory, so there is nothing to configure. The
+   deployed URL is picked up automatically for canonicals and the sitemap.
 4. **Google Search Console** — add the property, submit `sitemap.xml`. Day one.
    This is the only instrument that tells you whether the experiment is working.
 
@@ -144,8 +159,9 @@ via your `sid`. AdSense H5 Games Ads on top, then game-native networks
 ## Rules that keep the site alive
 
 - **Never self-host games you don't own.** That is what gets these sites DMCA'd off
-  their domains. Everything here is served from GamePix's servers under their
-  publisher terms. Keep it that way.
+  their domains. The only 15 files served from this domain are the open-source
+  titles whose licences allow it, plus Daily Five, which is ours. Everything else
+  streams from GamePix's or Playgama's servers under their publisher terms.
 - **No proxy features.** Punching through school network filters is what draws
   legal heat, ad-network bans, and the malware reputation the whole category carries.
   Not building it is a feature, not a limitation.

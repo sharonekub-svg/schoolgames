@@ -6,8 +6,20 @@ import path from 'node:path';
 const cfg = JSON.parse(await readFile('site.config.json', 'utf8'));
 const games = JSON.parse(await readFile('data/games.json', 'utf8'));
 const OUT = 'dist';
-// GitHub Pages serves this project under /schoolgames/, so every internal link
-// carries that prefix. Taken from `domain`, so a bare domain needs no changes.
+
+// Where this build will actually be served. Vercel names the production host at
+// build time, so a deploy gets correct canonicals and sitemap without anyone
+// remembering to edit the config after renaming the project. SITE_DOMAIN wins
+// over both, for a preview build or a custom domain.
+cfg.domain = (
+  process.env.SITE_DOMAIN ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+  cfg.domain
+).replace(/\/+$/, '');
+console.log(`domain: ${cfg.domain}`);
+
+// A subpath deploy (GitHub Pages serves this repo under /schoolgames/) needs
+// every internal link prefixed. Taken from `domain`, so a bare host needs none.
 const BASE = new URL(cfg.domain).pathname.replace(/\/+$/, '');
 const link = (u) => (String(u).startsWith('/') ? BASE + u : u);
 const YEAR = new Date().getFullYear();

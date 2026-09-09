@@ -2,10 +2,11 @@
   "siteName": "Loadless",
   "tagline": "Browser games that just load.",
   "description": "Free browser games. No download, no signup, no launcher. Click and play instantly.",
-  "domain": "https://sharonekub-svg.github.io/schoolgames",
+  "domain": "https://schoolgames.vercel.app",
   "sid": "1",
+  "playgamaClid": "p_1eb9284f-47b2-48d8-b2ae-c6cbabb21a3d",
   "accent": "#b8ff3c",
-  "maxGames": 400,
+  "maxGames": 500,
   "excludeCategories": [
     "Junior"
   ],

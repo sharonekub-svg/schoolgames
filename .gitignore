@@ -15,3 +15,7 @@ data/catalog.json
 data/gm-catalog.json
 data/gm-raw.json
 data/gm-p*.json
+
+# check-games.mjs output
+data/check-report.json
+data/check-shots/

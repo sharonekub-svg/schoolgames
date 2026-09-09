@@ -5,7 +5,7 @@
 //   node setup.mjs
 //
 // Needs `tar` on PATH (built into Windows 10+, macOS and Linux).
-import { mkdir, rm, rename, readdir, access, cp } from 'node:fs/promises';
+import { mkdir, rm, rename, readdir, access, cp, readFile, writeFile } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createWriteStream } from 'node:fs';
@@ -31,12 +31,63 @@ const SOURCES = [
   { repo: 'Casmo/tower-defense', dir: 'towerdefense', branch: 'master' },
   { repo: 'Couchfriends/Space-Shooter', dir: 'spaceshooter', branch: 'master', flatten: 'build' },
   { repo: 'Couchfriends/breakout', dir: 'breakout', branch: 'master', flatten: 'build' },
-  { repo: 'budnix/ball-and-wall', dir: 'ballwall', branch: 'master' },
+  // The repo ships neither bower_components/ nor the grunt-built
+  // dist/output.min.js, so its index.html loads a bundle that does not exist
+  // and the game hangs on its loading spinner forever. index_dev.html loads
+  // js/app/* directly - all of which is committed - and needs only the four
+  // libraries bower would have fetched. Each comes straight from its own
+  // source, licence file included, so there is still no build step here.
+  {
+    repo: 'budnix/ball-and-wall', dir: 'ballwall', branch: 'master',
+    rename: ['index_dev.html', 'index.html'],
+    vendor: [
+      { repo: 'jquery/jquery-dist', ref: 'refs/tags/2.1.4', from: 'dist/jquery.min.js',
+        to: 'bower_components/jquery/dist/jquery.min.js', license: 'MIT-LICENSE.txt' },
+      { repo: 'kriskowal/q', ref: 'refs/tags/v1.0.1', from: 'q.js',
+        to: 'bower_components/q/q.js', license: 'LICENSE' },
+      { repo: 'emn178/js-md5', ref: 'refs/tags/v0.7.3', from: 'build/md5.min.js',
+        to: 'bower_components/js-md5/js/md5.min.js', license: 'LICENSE.txt' },
+      { repo: 'octopuscreative/FancySelect', ref: 'refs/heads/master', from: 'fancySelect.js',
+        to: 'bower_components/fancyselect/fancySelect.js', license: 'LICENSE' }
+    ],
+    // aral.github.com has been dead for years, and it is a third-party request
+    // from our domain on every single load.
+    strip: [/<a[^>]*class="fork-me"[\s\S]*?<\/a>/g]
+  },
   { repo: 'jrgdiz/snake', dir: 'snake', branch: 'master', rename: ['index.htm', 'index.html'] },
   { repo: 'cxong/Beatrix', dir: 'beatrix', branch: 'master' }
 ];
 
 const exists = async (p) => { try { await access(p); return true; } catch { return false; } };
+
+// Pulls one file out of another repo's tarball. For the handful of games whose
+// dependencies were never committed alongside them.
+async function vendor(target, v) {
+  const tmp = path.join(GAMES, `.vendor-${path.basename(v.to)}`);
+  const tgz = `${tmp}.tar.gz`;
+  await rm(tmp, { recursive: true, force: true });
+  await mkdir(tmp, { recursive: true });
+
+  const res = await fetch(`https://codeload.github.com/${v.repo}/tar.gz/${v.ref}`);
+  if (!res.ok) throw new Error(`${v.repo}: HTTP ${res.status}`);
+  await pipeline(Readable.fromWeb(res.body), createWriteStream(tgz));
+  await run('tar', ['xzf', tgz, '-C', tmp]);
+  await rm(tgz, { force: true });
+
+  const inner = path.join(tmp, (await readdir(tmp))[0]);
+  const dest = path.join(target, v.to);
+  await mkdir(path.dirname(dest), { recursive: true });
+  await cp(path.join(inner, v.from), dest);
+
+  // These are MIT libraries; the licence has to travel with the code. It goes
+  // at the package root (bower_components/<pkg>/), not next to the file, so
+  // two packages cannot overwrite each other's.
+  if (v.license && (await exists(path.join(inner, v.license)))) {
+    const pkgRoot = path.join(target, ...v.to.split('/').slice(0, 2));
+    await cp(path.join(inner, v.license), path.join(pkgRoot, 'LICENSE')).catch(() => {});
+  }
+  await rm(tmp, { recursive: true, force: true });
+}
 
 async function fetchRepo(s) {
   const target = path.join(GAMES, s.dir);
@@ -97,6 +148,16 @@ async function fetchRepo(s) {
     if (await exists(path.join(target, from))) {
       await rename(path.join(target, from), path.join(target, to));
     }
+  }
+
+  for (const v of s.vendor ?? []) {
+    await vendor(target, v);
+    console.log(`    vendored ${v.to}  (${v.repo})`);
+  }
+
+  for (const re of s.strip ?? []) {
+    const html = path.join(target, 'index.html');
+    if (await exists(html)) await writeFile(html, (await readFile(html, 'utf8')).replace(re, ''));
   }
 
   console.log(`  fetched ${s.dir}`);

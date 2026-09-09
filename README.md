@@ -26,6 +26,19 @@ npm run build               # setup + thumbs + build: what the deploy runs
 249 games. It refuses any run that shrinks the list by more than 10%; pull the
 catalogue first, or pass `--force` if the shrink is deliberate.
 
+Checking that the games actually play:
+
+```bash
+node serve.mjs &                  # the self-hosted games need serving
+npx playwright@1 install chromium # one-off, the only dependency
+node check-games.mjs              # loads all 477 in a real browser
+node check-games.mjs --self       # only the 15 served from this domain
+```
+
+It opens each game, clicks once, waits for it to draw, and calls it broken when
+the page errors, 404s, or paints nothing. Failures get a screenshot in
+`data/check-shots/` and a line in `data/check-report.json`.
+
 Searching the catalogues before pinning a game:
 
 ```bash
@@ -42,6 +55,7 @@ node gamemonetize.mjs find "bloxorz"
 | `data/playgama.json` | the hand-picked Playgama catalogue (committed) |
 | `gamemonetize.mjs` | searches the GameMonetize catalogue |
 | `curate.mjs` | merges every source into the final list; won't shrink it >10% |
+| `check-games.mjs` | loads every game in a browser and reports the broken ones |
 | `build.mjs` | generates every page, search index, sitemap, robots.txt |
 | `src/style.css` | all styling |
 | `data/games.json` | the curated list (edit by hand to hand-pick) |
@@ -50,7 +64,7 @@ node gamemonetize.mjs find "bloxorz"
 
 ## Output
 
-- `/` — every game on one page
+- `/` — a Popular strip (`featured` in the config), then every game on one page
 - `/g/<slug>/` — one page per game, unique title + meta description + `VideoGame` JSON-LD
 - `search.json` — site-wide search index, fetched on the first keystroke only
 - `sitemap.xml`, `robots.txt`

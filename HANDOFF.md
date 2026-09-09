@@ -15,8 +15,11 @@ no `npm install` — plain Node scripts that generate HTML into `dist/`.
   partner id from `site.config.json`
 - **15 games self-hosted** from this repo: 14 open-source titles under MIT/BSD/Unlicense,
   plus **Daily Five**, an original daily word game written for this site
-- **478 pages**: home listing every game, one page per game, a lazy-loaded search
-  index, `sitemap.xml`, `robots.txt`
+- **478 pages**: home (a Popular strip, then every game), one page per game, a
+  lazy-loaded search index, `sitemap.xml`, `robots.txt`
+
+`featured` in `site.config.json` names the games in the top strip, in order, and
+`featuredCount` caps it. A name matching nothing is skipped rather than fatal.
 
 Every page is under ~40 KB. Total CSS + JS is 9 KB.
 
@@ -176,6 +179,7 @@ school network filters. This one deliberately does not, and should not gain one.
 | `package.json` | `npm run build` / `curate` / `serve`; no dependencies |
 | `make-thumbs.mjs` | draws thumbnails into `src/thumbs/` |
 | `shoot-thumbs.mjs` | optional: screenshots the self-hosted games for their thumbnails (needs Playwright) |
+| `check-games.mjs` | loads every game in a real browser, reports the broken ones |
 | `build.mjs` | generates every page, the search index, sitemap and robots.txt |
 | `serve.mjs` | zero-dependency local static server |
 | `gen-demo.mjs` | single-file shareable preview with thumbnails inlined |

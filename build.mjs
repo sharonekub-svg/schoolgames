@@ -119,6 +119,25 @@ try {
 const urls = [];
 const track = (u) => urls.push(`${cfg.domain}${u}`);
 
+// The strip at the top of the home page. `featured` in the config names those
+// games in order; a name that matches nothing is skipped rather than fatal, so
+// the row survives a game leaving the catalogue. Everything below it falls back
+// to the GamePix play-score, which is the only popularity signal the data
+// carries - Playgama and the self-hosted games have none, so sorting on it is
+// stable and leaves their curated order alone.
+const featuredNames = (cfg.featured ?? cfg.pinned ?? []).map((t) => t.toLowerCase());
+const featureRank = (g) => {
+  const t = g.title.toLowerCase();
+  const i = featuredNames.findIndex((f) => t.includes(f));
+  return i === -1 ? Infinity : i;
+};
+const popular = games
+  .filter((g) => featureRank(g) !== Infinity)
+  .sort((a, b) => featureRank(a) - featureRank(b) || (b.score ?? 0) - (a.score ?? 0))
+  .slice(0, cfg.featuredCount ?? 24);
+const listed = [...games].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+console.log(`popular: ${popular.length} games in the top strip`);
+
 // Home - the whole catalogue on one page. No categories, no pagination.
 await page(
   '.',
@@ -131,8 +150,14 @@ await page(
     <h1>${esc(cfg.tagline)}</h1>
     <p>${esc(cfg.description)}</p>
   </section>
+  ${
+    popular.length
+      ? `<div class="section-head"><h2>Popular</h2><span class="count">start here</span></div>
+  ${grid(popular)}`
+      : ''
+  }
   <div class="section-head"><h2>All games</h2><span class="count">${games.length} games</span></div>
-  ${grid(games)}
+  ${grid(listed)}
 </div>`
   })
 );

@@ -2,11 +2,14 @@
   "name": "loadless",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "setup": "node setup.mjs && node make-thumbs.mjs",
     "build": "node setup.mjs && node make-thumbs.mjs && node build.mjs",
     "curate": "node curate.mjs",
-    "serve": "node serve.mjs"
+    "serve": "node serve.mjs",
+    "check": "node check-games.mjs"
   }
 }

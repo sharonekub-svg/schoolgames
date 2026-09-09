@@ -15,6 +15,7 @@ async function load(file) {
 
 const gamepix = await load('data/catalog.json');
 const gamemonetize = await load('data/gm-catalog.json');
+const playgama = await load('data/playgama.json');
 
 function slugify(title) {
   return title
@@ -25,10 +26,11 @@ function slugify(title) {
     .slice(0, 60);
 }
 
-function retag(url, sid) {
+function retag(url, key, value) {
+  if (!value) return url;
   try {
     const u = new URL(url);
-    u.searchParams.set('sid', sid);
+    u.searchParams.set(key, value);
     return u.toString();
   } catch {
     return url;
@@ -66,7 +68,7 @@ function fromGamePix(g) {
     description: (g.desc_en || g.description || '').trim(),
     category: g.category || 'Arcade',
     categories: g.categories?.length ? g.categories : [g.category || 'Arcade'],
-    url: retag(g.url, cfg.sid),
+    url: retag(g.url, 'sid', cfg.sid),
     thumb: g.thumbnailUrl,
     width: g.width ?? 800,
     height: g.height ?? 600,
@@ -103,6 +105,33 @@ function fromGameMonetize(g) {
   };
 }
 
+// Playgama is a vetted broker: every title is a licensed original served from
+// their servers, so entries keep their real names and skip the trademark check
+// (the same reason GamePix does). `clid` is the partner id every play is
+// credited to - it lives in site.config.json so one edit re-tags all of them.
+function fromPlaygama(g) {
+  const title = (g.title ?? '').trim();
+  const cat = g.category || 'Arcade';
+  return {
+    source: 'playgama',
+    slug: slugify(title),
+    title,
+    description: (g.description ?? '').trim(),
+    category: cat,
+    categories: g.categories?.length ? g.categories : [cat],
+    url: retag(g.url, 'clid', cfg.playgamaClid),
+    thumb: g.thumb,
+    width: g.width ?? 800,
+    height: g.height ?? 600,
+    orientation: g.orientation ?? 'landscape',
+    touch: g.touch !== false,
+    keyboard: g.keyboard !== false,
+    instructions: (g.instructions ?? '').trim(),
+    // No quality score in this feed, but the list itself is hand-curated.
+    score: g.score ?? 0
+  };
+}
+
 // Franchise names owned by someone else. A clone with its own name is fine;
 // a clone wearing the original's name gets our domain a DMCA notice, so any
 // title carrying one of these is dropped from the loosely-vetted feed.
@@ -123,7 +152,7 @@ function usable(n) {
 
 function add(n) {
   if (!usable(n) || seen.has(n.slug)) return false;
-  if (n.source !== 'gamepix') {
+  if (n.source !== 'gamepix' && n.source !== 'playgama' && n.source !== 'selfhosted') {
     const hit = carriesTrademark(n.title);
     if (hit) {
       rejected.push(`${n.title}  <- "${hit}"`);
@@ -172,6 +201,7 @@ function fromSelfHosted(s) {
 const pool = [
   ...(cfg.selfHosted ?? []).map(fromSelfHosted),
   ...gamepix.map(fromGamePix),
+  ...playgama.map(fromPlaygama),
   ...gamemonetize.map(fromGameMonetize)
 ];
 
@@ -190,6 +220,9 @@ for (const want of cfg.pinned ?? []) {
   for (const m of matches) if (add(m)) pinnedLog.push(`  pinned   ${m.title}  [${m.source}]`);
 }
 
+// The whole Playgama list, which was hand-picked rather than score-filtered.
+for (const n of pool) if (n.source === 'playgama') add(n);
+
 // Then the scored catalogue, best first. The GameMonetize feed has no quality
 // signal at all, so nothing from it gets in except by name in `pinned` above -
 // otherwise it floods the site with shovelware.
@@ -198,6 +231,26 @@ const rest = pool.filter((n) => n.source === 'gamepix' && n.score >= floor).sort
 for (const n of rest) {
   if (out.length >= cfg.maxGames) break;
   add(n);
+}
+
+// A missing catalogue file is not an error on its own - load() returns [] - so
+// a half-fetched run would quietly shrink the site instead of failing. Refuse
+// any run that drops more than a tenth of the current list.
+const current = await load('data/games.json');
+const force = process.argv.includes('--force');
+if (current.length && out.length < current.length * 0.9 && !force) {
+  const have = {};
+  for (const g of current) have[g.source] = (have[g.source] ?? 0) + 1;
+  const now = {};
+  for (const g of out) now[g.source] = (now[g.source] ?? 0) + 1;
+  console.error(`refusing to write: ${current.length} games -> ${out.length}`);
+  console.error('  now:  ' + JSON.stringify(now));
+  console.error('  was:  ' + JSON.stringify(have));
+  console.error('\nA source catalogue is probably missing. Restore it:');
+  console.error('  node catalog.mjs pull      -> data/catalog.json  (GamePix)');
+  console.error('  data/playgama.json is committed, it should already be there');
+  console.error('\nRun with --force if the shrink is deliberate.');
+  process.exit(1);
 }
 
 await writeFile('data/games.json', JSON.stringify(out, null, 2));

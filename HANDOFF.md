@@ -7,14 +7,16 @@ Everything it needs is here.
 
 ## What this is
 
-A static browser-games portal. 253 curated games. No framework, no dependencies,
+A static browser-games portal. 477 curated games. No framework, no dependencies,
 no `npm install` — plain Node scripts that generate HTML into `dist/`.
 
-- **238 games** embedded from the GamePix broker, filtered to a play-score of 0.80+
+- **249 games** embedded from the GamePix broker, filtered to a play-score of 0.80+
+- **213 games** embedded from Playgama, a hand-picked list carrying the `playgamaClid`
+  partner id from `site.config.json`
 - **15 games self-hosted** from this repo: 14 open-source titles under MIT/BSD/Unlicense,
   plus **Daily Five**, an original daily word game written for this site
-- **262 pages**: home, 8 category sections with pagination, one page per game,
-  a lazy-loaded search index, `sitemap.xml`, `robots.txt`
+- **478 pages**: home listing every game, one page per game, a lazy-loaded search
+  index, `sitemap.xml`, `robots.txt`
 
 Every page is under ~40 KB. Total CSS + JS is 9 KB.
 
@@ -33,39 +35,60 @@ node build.mjs          # -> dist/
 node serve.mjs          # local check at http://localhost:4321
 ```
 
+`npm run build` is `setup.mjs && make-thumbs.mjs && build.mjs` — the three steps a
+deploy needs. It deliberately leaves `curate.mjs` out: see the warning below.
+
+### Do not run `curate.mjs` without the catalogues
+
+`curate.mjs` rebuilds `data/games.json` from scratch out of the source catalogues.
+`data/playgama.json` is committed, but `data/catalog.json` (GamePix) is not — it is
+re-downloadable, so it is gitignored. Running `curate.mjs` on a fresh clone would
+therefore drop all 249 GamePix games.
+
+It now refuses to: any run that would shrink the list by more than 10% aborts and
+prints what is missing. `node catalog.mjs pull` first, then curate. `--force` writes
+anyway, when the shrink is what you actually wanted.
+
 `setup.mjs` and `catalog.mjs pull` only need running once, or when refreshing content.
 After that, `curate.mjs && build.mjs` is the whole loop.
 
-`dist/` ends up around 83 MB across 2,265 files. Largest single file is 6.2 MB.
+`dist/` ends up around 88 MB. Most of it is the 14 vendored games.
 
 ---
 
 ## Deploy to Vercel
 
 `vercel.json` is already written: `outputDirectory: dist`, `trailingSlash: true`
-(the generated URLs are directory-style, so this matters), plus cache headers.
+(the generated URLs are directory-style, so this matters), and cache headers. It
+carries the build command too, so importing the repo at
+vercel.com/new is the whole deploy — no CLI, no token, no settings to fill in:
 
-**Do not set a build command on Vercel.** `setup.mjs` pulls ~80 MB from GitHub and
-that is fragile in a build container. Build locally, deploy the output:
+| Vercel setting | Value | Where it comes from |
+|---|---|---|
+| Framework preset | Other | no framework here |
+| Build command | `node setup.mjs && node make-thumbs.mjs && node build.mjs` | `vercel.json` |
+| Install command | `echo "no dependencies"` | `vercel.json` |
+| Output directory | `dist` | `vercel.json` |
 
-```bash
-node curate.mjs && node build.mjs
-npx vercel deploy --prod dist
-```
+`setup.mjs` pulls ~80 MB from codeload.github.com during the build. That is the
+price of not committing 14 vendored games; it takes well under a minute.
 
-If you would rather Vercel build it, commit `dist/` and set the output directory
-to `dist` with an empty build command.
+Check the **production branch** in Settings → Git. Vercel defaults to the repo's
+default branch, which is not necessarily the branch carrying the latest work.
 
-### After the first deploy — do this, it matters
+### The domain takes care of itself
 
-The site currently has a placeholder domain. Fix it or every canonical tag and
-every sitemap URL points at nothing:
+`build.mjs` reads the host in this order:
 
-1. Set `domain` in `site.config.json` to the real deployed URL, no trailing slash
-   (e.g. `https://loadless.vercel.app`)
-2. `node build.mjs`
-3. Redeploy
-4. Submit `<domain>/sitemap.xml` in Google Search Console
+1. `SITE_DOMAIN` — set it for a custom domain or a one-off build
+2. `VERCEL_PROJECT_PRODUCTION_URL` — Vercel sets this itself, so canonicals and
+   `sitemap.xml` are right from the first deploy, even after a project rename
+3. `domain` in `site.config.json` — the local-preview fallback
+
+A `domain` with a path (`https://user.github.io/schoolgames`) makes every internal
+link carry that prefix, for a subpath host like GitHub Pages. A bare host adds none.
+
+After the first deploy, submit `<domain>/sitemap.xml` in Google Search Console.
 
 ---
 
@@ -101,6 +124,9 @@ across devices would be the first real reason.
 The site works and shows ads right now. **The ad money currently goes to the
 brokers' default accounts, not to Sharon.**
 
+Playgama is the exception: `playgamaClid` in `site.config.json` is already a real
+partner id, so those 213 games credit the right account.
+
 1. **GamePix `sid`** — `site.config.json` has `"sid": "1"`, the default account.
    Sign up at partners.gamepix.com, get the real `sid`, put it in the config,
    re-run `curate.mjs && build.mjs`.
@@ -125,8 +151,9 @@ portals, is what gets sites in this category DMCA'd off their domains.
 
 **The trademark blocklist is load-bearing.** `blockedTrademarks` in
 `site.config.json` drops broker titles carrying franchise names someone else owns
-(`Minecraft Hole IO`, `Mario 3D Shooter`, `FNAF Shooter`, and so on). GamePix
-entries skip the check because that catalogue is vetted; the looser feeds do not.
+(`Minecraft Hole IO`, `Mario 3D Shooter`, `FNAF Shooter`, and so on). GamePix and
+Playgama entries skip the check because both catalogues are vetted and carry the
+real licensed titles under their real names; the looser feeds do not.
 A clone with its own name is legal. A clone wearing the original's name gets a
 takedown sent to this domain.
 
@@ -144,7 +171,9 @@ school network filters. This one deliberately does not, and should not gain one.
 | `catalog.mjs` | pulls and searches the GamePix catalogue |
 | `gamemonetize.mjs` | searches the GameMonetize catalogue |
 | `opensource.mjs` | checks candidate games against the GitHub API for a real licence |
-| `curate.mjs` | merges every source into the final list |
+| `curate.mjs` | merges every source into the final list (refuses to shrink it >10%) |
+| `data/playgama.json` | the hand-picked Playgama catalogue — committed, unlike the GamePix one |
+| `package.json` | `npm run build` / `curate` / `serve`; no dependencies |
 | `make-thumbs.mjs` | draws thumbnails into `src/thumbs/` |
 | `shoot-thumbs.mjs` | optional: screenshots the self-hosted games for their thumbnails (needs Playwright) |
 | `build.mjs` | generates every page, the search index, sitemap and robots.txt |
@@ -158,7 +187,7 @@ school network filters. This one deliberately does not, and should not gain one.
 
 ## One thing worth reading before changing the game list
 
-`README.md` explains why there are 253 games and not 21,000. Short version: the
+`README.md` explains why there are 477 games and not 21,000. Short version: the
 GamePix score distribution shows 3,367 games with a score of exactly zero and a
 flat default blob between 0.70 and 0.80. Only ~250 titles are genuinely played.
 
